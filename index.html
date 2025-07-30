@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Islamic Prayer Bot - Discord Prayer Times & Reminders</title>
+    <meta name="description" content="A comprehensive Discord bot for Islamic prayer times, reminders, and events for Middle East cities. Multi-language support with Arabic and English.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <div class="nav-logo">🕌</div>
+                <span class="nav-title">Islamic Prayer Bot</span>
+            </div>
+            <div class="nav-links">
+                <a href="#features" class="nav-link">Features</a>
+                <a href="#setup" class="nav-link">Setup Guide</a>
+                <a href="#commands" class="nav-link">Commands</a>
+                <a href="#invite" class="nav-link invite-btn">Add to Discord</a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <div class="hero-background"></div>
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1 class="hero-title">
+                        <span class="title-main">Islamic Prayer Bot</span>
+                        <span class="title-arabic">بوت الأذكار والصلوات</span>
+                    </h1>
+                    <p class="hero-description">
+                        Comprehensive Discord bot providing accurate prayer times, reminders, and Islamic events 
+                        for Middle East cities. Features multi-language support and customizable notifications.
+                    </p>
+                    <div class="hero-buttons">
+                        <a href="#invite" class="btn btn-primary">
+                            <span class="btn-icon">📱</span>
+                            Add to Discord
+                        </a>
+                        <a href="#setup" class="btn btn-secondary">
+                            <span class="btn-icon">📖</span>
+                            Setup Guide
+                        </a>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <div class="hero-card">
+                        <div class="card-header">
+                            <div class="status-dot"></div>
+                            <span>Prayer Times - Riyadh</span>
+                        </div>
+                        <div class="card-content">
+                            <div class="prayer-time">
+                                <span class="prayer-name">🌄 Fajr</span>
+                                <span class="prayer-clock">05:15 AM</span>
+                            </div>
+                            <div class="prayer-time">
+                                <span class="prayer-name">☀️ Dhuhr</span>
+                                <span class="prayer-clock">12:30 PM</span>
+                            </div>
+                            <div class="prayer-time">
+                                <span class="prayer-name">⛅ Asr</span>
+                                <span class="prayer-clock">03:45 PM</span>
+                            </div>
+                            <div class="prayer-time active">
+                                <span class="prayer-name">🌇 Maghrib</span>
+                                <span class="prayer-clock">06:15 PM</span>
+                            </div>
+                            <div class="prayer-time">
+                                <span class="prayer-name">🌙 Isha</span>
+                                <span class="prayer-clock">07:45 PM</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section id="features" class="features">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Comprehensive Islamic Features</h2>
+                <p class="section-description">Everything your Discord server needs for Islamic prayer management</p>
+            </div>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🕌</div>
+                    <h3 class="feature-title">Accurate Prayer Times</h3>
+                    <p class="feature-description">
+                        Real-time prayer times for all major Middle East cities including Saudi Arabia, UAE, 
+                        Kuwait, Bahrain, Qatar, and Oman using authenticated calculation methods.
+                    </p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">⏰</div>
+                    <h3 class="feature-title">Smart Reminders</h3>
+                    <p class="feature-description">
+                        Customizable prayer reminders with multiple notification times (5, 15, 30 minutes before). 
+                        Personal and server-wide reminder settings available.
+                    </p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">📅</div>
+                    <h3 class="feature-title">Islamic Events</h3>
+                    <p class="feature-description">
+                        Precise countdown to Islamic events like Ramadan, Eid al-Fitr, Eid al-Adha, 
+                        and other significant dates with Hijri calendar integration.
+                    </p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🌍</div>
+                    <h3 class="feature-title">Multi-Language</h3>
+                    <p class="feature-description">
+                        Full support for Arabic and English languages with proper RTL text handling 
+                        and culturally appropriate formatting for Islamic content.
+                    </p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">⚙️</div>
+                    <h3 class="feature-title">Flexible Settings</h3>
+                    <p class="feature-description">
+                        Comprehensive customization options including enabled countries, cities, 
+                        calculation methods, and notification preferences for each server.
+                    </p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">💬</div>
+                    <h3 class="feature-title">Islamic Quotes</h3>
+                    <p class="feature-description">
+                        Automated sharing of authentic Islamic quotes and verses from Quran and Hadith 
+                        with customizable intervals and dedicated channels.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="setup" class="setup">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Easy Setup Guide</h2>
+                <p class="section-description">Get your Islamic Prayer Bot running in minutes</p>
+            </div>
+            
+            <div class="setup-steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3 class="step-title">Invite the Bot</h3>
+                        <p class="step-description">
+                            Click the "Add to Discord" button above or use the invite link at the bottom. 
+                            Make sure you have "Manage Server" permissions in your Discord server.
+                        </p>
+                        <div class="step-code">
+                            <span class="code-comment">Required Permissions:</span>
+                            <span class="code-line">• Send Messages</span>
+                            <span class="code-line">• Read Message History</span>
+                            <span class="code-line">• Use Slash Commands</span>
+                            <span class="code-line">• Embed Links</span>
+                            <span class="code-line">• Mention Everyone (optional)</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h3 class="step-title">Set Prayer Channel</h3>
+                        <p class="step-description">
+                            Choose a dedicated channel for prayer notifications. This keeps your server organized 
+                            and ensures important prayer alerts are easily visible.
+                        </p>
+                        <div class="step-code">
+                            <span class="code-comment">Setup Command:</span>
+                            <span class="code-line">?setup #prayer-times</span>
+                            <span class="code-comment">Or use channel ID:</span>
+                            <span class="code-line">?setup 1234567890123456789</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h3 class="step-title">Configure Settings</h3>
+                        <p class="step-description">
+                            Customize the bot for your community. Set language preferences, enable countries, 
+                            configure reminder times, and adjust notification settings.
+                        </p>
+                        <div class="step-code">
+                            <span class="code-comment">Configuration Commands:</span>
+                            <span class="code-line">?settings</span>
+                            <span class="code-line">?language ar</span>
+                            <span class="code-line">?countries add SA</span>
+                            <span class="code-line">?prefix !</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h3 class="step-title">Test & Verify</h3>
+                        <p class="step-description">
+                            Run test commands to ensure everything is working properly. Check prayer times, 
+                            test reminders, and verify all features are functioning as expected.
+                        </p>
+                        <div class="step-code">
+                            <span class="code-comment">Test Commands:</span>
+                            <span class="code-line">?status</span>
+                            <span class="code-line">?testprayer</span>
+                            <span class="code-line">?events</span>
+                            <span class="code-line">?help</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="setup-tips">
+                <h3 class="tips-title">💡 Pro Tips</h3>
+                <div class="tips-grid">
+                    <div class="tip">
+                        <strong>Multiple Cities:</strong> Enable specific cities using the settings menu to avoid spam from unwanted locations.
+                    </div>
+                    <div class="tip">
+                        <strong>Personal Reminders:</strong> Users can set individual reminders with <code>?remindme fajr 15</code> for personal notifications.
+                    </div>
+                    <div class="tip">
+                        <strong>Islamic Quotes:</strong> Enable automated Islamic quotes in a dedicated channel for daily spiritual reminders.
+                    </div>
+                    <div class="tip">
+                        <strong>Calculation Methods:</strong> The bot automatically uses region-appropriate calculation methods (Umm Al-Qura for Saudi Arabia, etc.).
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="commands" class="commands">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Command Reference</h2>
+                <p class="section-description">Complete list of available commands and their usage</p>
+            </div>
+            
+            <div class="commands-tabs">
+                <div class="tab-buttons">
+                    <button class="tab-btn active" data-tab="general">General</button>
+                    <button class="tab-btn" data-tab="admin">Admin</button>
+                    <button class="tab-btn" data-tab="personal">Personal</button>
+                </div>
+                
+                <div class="tab-content active" id="general">
+                    <div class="commands-grid">
+                        <div class="command-card">
+                            <div class="command-syntax">
+                                <span class="command-name">?help</span>
+                                <span class="command-alias">?مساعدة</span>
+                            </div>
+                            <p class="command-description">
+                                Display comprehensive help menu with all available commands and their descriptions.
+                            </p>
+                        </div>
+                        
+                        <div class="command-card">
+                            <div class="command-syntax">
+                                <span class="command-name">?status</span>
+                            </div>
+                            <p class="command-description">
+                                Show bot status, server configuration, current Hijri date, and quick action buttons.
+                            </p>
+                        </div>
+                        
+                        <div class="command-card">
+                            <div class="command-syntax">
+                                <span class="command-name">?events</span>
+                                <span class="command-alias">?مناسبات</span>
+                            </div>
+                            <p class="command-description">
+                                Display upcoming Islamic events with precise countdown timers and Hijri dates.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="tab-content" id="admin">
+                    <div class="commands-grid">
+                        <div class="command-card">
+                            <div class="command-syntax">
+                                <span class="command-name">?setup</span>
+                                <span class="command-params">#channel</span>
+                            </div>
+                            <p class="command-description">
+                                Set the designated channel for prayer announcements and notifications.
+                            </p>
+                        </div>
+                        
+                        <div class="command-card">
+                            <div class="command-syntax">
+                                <span class="command-name">?settings</span>
+                            </div>
+                            <p class="command-description">
+                                Open comprehensive settings menu with interactive buttons for all configuration options.
+                            </p>
+                        </div>
+                        
+                        <div class="command-card">
+                            <div class="command-syntax">
+                                <span class="command-name">?language</span>
+                                <span class="command-params">ar/en</span>
+                            </div>
+                            <p class="command-description">
+                                Change bot language between Arabic and English for all server interactions.
+                            </p>
+                        </div>
+                        
+                        <div class="command-card">
+                            <div class="command-syntax">
+                                <span class="command-name">?countries</span>
+                                <span class="command-params">add/remove [code]</span>
+                            </div>
+                            <p class="command-description">
+                                Manage enabled countries (SA, KW, AE, BH, QA, OM) for prayer time notifications.
+                            </p>
+                        </div>
+                        
+                        <div class="command-card">
+                            <div class="command-syntax">
+                                <span class="command-name">?prefix</span>
+                                <span class="command-params">[symbol]</span>
+                            </div>
+                            <p class="command-description">
+                                Change the command prefix from default "?" to any custom symbol (max 3 characters).
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="tab-content" id="personal">
+                    <div class="commands-grid">
+                        <div class="command-card">
+                            <div class="command-syntax">
+                                <span class="command-name">?remindme</span>
+                                <span class="command-params">[prayer] [minutes]</span>
+                            </div>
+                            <p class="command-description">
+                                Set personal prayer reminders. Example: <code>?remindme الفجر 15</code> or <code>?remindme fajr 15</code>
+                            </p>
+                        </div>
+                        
+                        <div class="command-card">
+                            <div class="command-syntax">
+                                <span class="command-name">Status Button</span>
+                                <span class="command-params">My Reminders</span>
+                            </div>
+                            <p class="command-description">
+                                View all your active personal prayer reminders through the interactive status menu.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="command-examples">
+                <h3 class="examples-title">Usage Examples</h3>
+                <div class="examples-grid">
+                    <div class="example">
+                        <span class="example-command">?setup #prayer-channel</span>
+                        <span class="example-description">Set prayer notifications channel</span>
+                    </div>
+                    <div class="example">
+                        <span class="example-command">?remindme الفجر 10</span>
+                        <span class="example-description">Personal Fajr reminder 10 minutes before</span>
+                    </div>
+                    <div class="example">
+                        <span class="example-command">?countries add SA</span>
+                        <span class="example-description">Enable Saudi Arabia prayer times</span>
+                    </div>
+                    <div class="example">
+                        <span class="example-command">?language ar</span>
+                        <span class="example-description">Switch to Arabic language</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="invite" class="invite">
+        <div class="container">
+            <div class="invite-content">
+                <div class="invite-text">
+                    <h2 class="invite-title">Ready to Get Started?</h2>
+                    <p class="invite-description">
+                        Add Islamic Prayer Bot to your Discord server today and never miss another prayer time. 
+                        Join thousands of Muslim communities already using our bot for accurate prayer management.
+                    </p>
+                    <div class="invite-stats">
+                        <div class="stat">
+                            <span class="stat-number">50+</span>
+                            <span class="stat-label">Cities Supported</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">6</span>
+                            <span class="stat-label">Countries Covered</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">24/7</span>
+                            <span class="stat-label">Uptime</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="invite-card">
+                    <div class="invite-card-header">
+                        <div class="bot-avatar">🕌</div>
+                        <div class="bot-info">
+                            <h3>Islamic Prayer Bot</h3>
+                            <span class="bot-status">• Online</span>
+                        </div>
+                    </div>
+                    <div class="invite-card-content">
+                        <p>Add to your Discord server with these permissions:</p>
+                        <div class="permissions-list">
+                            <div class="permission">✅ Send Messages</div>
+                            <div class="permission">✅ Read Message History</div>
+                            <div class="permission">✅ Use Slash Commands</div>
+                            <div class="permission">✅ Embed Links</div>
+                            <div class="permission">⚪ Mention Everyone (Optional)</div>
+                        </div>
+                    </div>
+                    <div class="invite-card-footer">
+                        <a href="#" class="btn btn-primary btn-full" id="invite-button">
+                            <span class="btn-icon">🚀</span>
+                            Add to Discord
+                        </a>
+                        <p class="invite-note">
+                            Clicking will redirect to Discord's authorization page
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <div class="footer-logo">🕌</div>
+                    <div class="footer-info">
+                        <h3>Islamic Prayer Bot</h3>
+                        <p>Serving the Muslim community with accurate prayer times and Islamic reminders.</p>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-section">
+                        <h4>Resources</h4>
+                        <a href="#setup">Setup Guide</a>
+                        <a href="#commands">Commands</a>
+                        <a href="#features">Features</a>
+                    </div>
+                    <div class="footer-section">
+                        <h4>Support</h4>
+                        <a href="#" onclick="alert('Contact support at: your-email@example.com')">Contact Us</a>
+                        <a href="#" onclick="alert('Join our Discord support server')">Discord Support</a>
+                        <a href="#" onclick="alert('Documentation coming soon')">Documentation</a>
+                    </div>
+                    <div class="footer-section">
+                        <h4>Islamic Resources</h4>
+                        <a href="https://aladhan.com" target="_blank">Prayer Times API</a>
+                        <a href="#" onclick="alert('Qibla direction feature coming soon')">Qibla Direction</a>
+                        <a href="#" onclick="alert('Hadith integration coming soon')">Daily Hadith</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="footer-copyright">
+                    <p>&copy; 2024 Islamic Prayer Bot. Built with ❤️ for the Muslim community.</p>
+                    <p class="arabic-text">جُعِلَ بِحُبٍّ لِلْأُمَّةِ الْإِسْلَامِيَّةِ</p>
+                </div>
+                <div class="footer-tech">
+                    <span>Powered by</span>
+                    <a href="https://discord.js.org" target="_blank">Discord.js</a>
+                    <span>•</span>
+                    <a href="https://aladhan.com" target="_blank">Aladhan API</a>
+                    <span>•</span>
+                    <a href="https://nodejs.org" target="_blank">Node.js</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
