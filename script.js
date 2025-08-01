@@ -3,13 +3,151 @@ const tabButtons = document.querySelectorAll('.tab-btn');
 const tabContents = document.querySelectorAll('.tab-content');
 const inviteButton = document.getElementById('invite-button');
 const navLinks = document.querySelectorAll('.nav-link');
+const navbar = document.querySelector('.navbar');
+const heroCard = document.querySelector('.hero-card');
+const featureCards = document.querySelectorAll('.feature-card');
+const steps = document.querySelectorAll('.step');
+const sectionHeaders = document.querySelectorAll('.section-header');
 
 // Configuration
 const CONFIG = {
-  botId: '1399336621987467335', // Replace with your actual bot ID
+  botId: 'YOUR_BOT_ID_HERE', // Replace with your actual bot ID
   permissions: '182272', // Basic permissions: Send Messages, Read Message History, Use Slash Commands, Embed Links
   inviteUrl: 'https://discord.com/api/oauth2/authorize'
 };
+
+// Enhanced Loading Screen
+function initializeLoadingScreen() {
+  const loading = document.createElement('div');
+  loading.className = 'loading';
+  loading.innerHTML = '<div class="loading-spinner"></div>';
+  document.body.appendChild(loading);
+  
+  window.addEventListener('load', () => {
+    setTimeout(() => {
+      loading.classList.add('hidden');
+      setTimeout(() => loading.remove(), 500);
+    }, 1000);
+  });
+}
+
+// Custom Cursor
+function initializeCustomCursor() {
+  if (window.innerWidth <= 768) return; // Skip on mobile
+  
+  const cursorDot = document.createElement('div');
+  const cursorOutline = document.createElement('div');
+  
+  cursorDot.className = 'cursor-dot';
+  cursorOutline.className = 'cursor-outline';
+  
+  document.body.appendChild(cursorDot);
+  document.body.appendChild(cursorOutline);
+  
+  let mouseX = 0, mouseY = 0;
+  let outlineX = 0, outlineY = 0;
+  
+  document.addEventListener('mousemove', (e) => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+    
+    cursorDot.style.left = mouseX + 'px';
+    cursorDot.style.top = mouseY + 'px';
+  });
+  
+  function animateOutline() {
+    outlineX += (mouseX - outlineX) * 0.1;
+    outlineY += (mouseY - outlineY) * 0.1;
+    
+    cursorOutline.style.left = outlineX - 20 + 'px';
+    cursorOutline.style.top = outlineY - 20 + 'px';
+    
+    requestAnimationFrame(animateOutline);
+  }
+  animateOutline();
+  
+  // Cursor interactions
+  const interactiveElements = document.querySelectorAll('a, button, .btn, .command-name, .example-command');
+  interactiveElements.forEach(el => {
+    el.addEventListener('mouseenter', () => {
+      cursorDot.style.transform = 'scale(2)';
+      cursorOutline.style.transform = 'scale(1.5)';
+    });
+    el.addEventListener('mouseleave', () => {
+      cursorDot.style.transform = 'scale(1)';
+      cursorOutline.style.transform = 'scale(1)';
+    });
+  });
+}
+
+// Particle Background
+function initializeParticles() {
+  const particlesContainer = document.createElement('div');
+  particlesContainer.className = 'particles';
+  document.body.appendChild(particlesContainer);
+  
+  function createParticle() {
+    const particle = document.createElement('div');
+    particle.className = 'particle';
+    
+    particle.style.left = Math.random() * 100 + '%';
+    particle.style.top = Math.random() * 100 + '%';
+    particle.style.animationDelay = Math.random() * 6 + 's';
+    particle.style.animationDuration = (Math.random() * 4 + 4) + 's';
+    
+    particlesContainer.appendChild(particle);
+    
+    setTimeout(() => {
+      particle.remove();
+    }, 10000);
+  }
+  
+  // Create initial particles
+  for (let i = 0; i < 20; i++) {
+    setTimeout(createParticle, i * 200);
+  }
+  
+  // Continue creating particles
+  setInterval(createParticle, 500);
+}
+
+// Scroll Progress Indicator
+function initializeScrollIndicator() {
+  const scrollIndicator = document.createElement('div');
+  scrollIndicator.className = 'scroll-indicator';
+  document.body.appendChild(scrollIndicator);
+  
+  window.addEventListener('scroll', () => {
+    const scrollTop = window.pageYOffset;
+    const docHeight = document.body.offsetHeight - window.innerHeight;
+    const scrollPercent = (scrollTop / docHeight) * 100;
+    scrollIndicator.style.width = scrollPercent + '%';
+  });
+}
+
+// Back to Top Button
+function initializeBackToTop() {
+  const backToTop = document.createElement('button');
+  backToTop.className = 'back-to-top';
+  backToTop.innerHTML = '↑';
+  backToTop.setAttribute('aria-label', 'Back to top');
+  document.body.appendChild(backToTop);
+  
+  window.addEventListener('scroll', () => {
+    if (window.pageYOffset > 300) {
+      backToTop.classList.add('visible');
+    } else {
+      backToTop.classList.remove('visible');
+    }
+  });
+  
+  backToTop.addEventListener('click', () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  });
+}
 
 // Tab Functionality
 function initializeTabs() {
@@ -27,9 +165,11 @@ function initializeTabs() {
       
       // Add animation class
       const activeContent = document.getElementById(targetTab);
-      activeContent.style.animation = 'none';
+      activeContent.style.opacity = '0';
+      activeContent.style.transform = 'translateY(20px)';
       setTimeout(() => {
-        activeContent.style.animation = 'slideUp 0.5s ease-out';
+        activeContent.style.opacity = '1';
+        activeContent.style.transform = 'translateY(0)';
       }, 10);
     });
   });
@@ -48,7 +188,7 @@ function initializeSmoothScrolling() {
         const targetElement = document.getElementById(targetId);
         
         if (targetElement) {
-          const navHeight = document.querySelector('.navbar').offsetHeight;
+          const navHeight = navbar.offsetHeight;
           const targetPosition = targetElement.offsetTop - navHeight - 20;
           
           window.scrollTo({
@@ -77,6 +217,7 @@ function initializeInviteButton() {
       const originalText = inviteButton.innerHTML;
       inviteButton.innerHTML = '<span class="btn-icon">⏳</span>Opening Discord...';
       inviteButton.style.pointerEvents = 'none';
+      inviteButton.style.transform = 'scale(0.95)';
       
       // Open Discord authorization page
       window.open(inviteUrl, '_blank', 'width=500,height=700,scrollbars=yes,resizable=yes');
@@ -85,6 +226,7 @@ function initializeInviteButton() {
       setTimeout(() => {
         inviteButton.innerHTML = originalText;
         inviteButton.style.pointerEvents = 'auto';
+        inviteButton.style.transform = '';
       }, 3000);
     });
   }
@@ -92,10 +234,9 @@ function initializeInviteButton() {
 
 // Navbar Scroll Effect
 function initializeNavbarScrollEffect() {
-  const navbar = document.querySelector('.navbar');
   let lastScrollY = window.scrollY;
   
-  window.addEventListener('scroll', () => {
+  window.addEventListener('scroll', utils.debounce(() => {
     const currentScrollY = window.scrollY;
     
     // Add/remove scrolled class for styling
@@ -113,20 +254,32 @@ function initializeNavbarScrollEffect() {
     }
     
     lastScrollY = currentScrollY;
-  });
+  }, 10));
 }
 
 // Intersection Observer for Animations
 function initializeScrollAnimations() {
   const observerOptions = {
     threshold: 0.1,
-    rootMargin: '0px 0px -50px 0px'
+    rootMargin: '0px 0px -100px 0px'
   };
   
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
-        entry.target.classList.add('animate-on-scroll');
+        if (entry.target.classList.contains('section-header')) {
+          entry.target.classList.add('animate');
+        } else if (entry.target.classList.contains('feature-card')) {
+          setTimeout(() => {
+            entry.target.classList.add('animate');
+          }, Array.from(featureCards).indexOf(entry.target) * 100);
+        } else if (entry.target.classList.contains('step')) {
+          setTimeout(() => {
+            entry.target.classList.add('animate');
+          }, Array.from(steps).indexOf(entry.target) * 200);
+        } else {
+          entry.target.classList.add('animate-on-scroll');
+        }
         observer.unobserve(entry.target);
       }
     });
@@ -134,7 +287,7 @@ function initializeScrollAnimations() {
   
   // Observe all feature cards, command cards, and other animated elements
   const animatedElements = document.querySelectorAll(
-    '.feature-card, .command-card, .step, .invite-card'
+    '.feature-card, .command-card, .step, .invite-card, .section-header'
   );
   
   animatedElements.forEach(el => {
@@ -145,6 +298,8 @@ function initializeScrollAnimations() {
 // Prayer Time Animation (Hero Card)
 function initializePrayerTimeAnimation() {
   const prayerTimes = document.querySelectorAll('.prayer-time');
+  if (!prayerTimes.length) return;
+  
   let currentActive = 0;
   
   function updateActivePrayer() {
@@ -177,12 +332,15 @@ function initializeCommandCopy() {
         
         // Show feedback
         const originalText = command.textContent;
+        const originalBg = command.style.background;
         command.textContent = 'Copied!';
-        command.style.background = '#4CAF50';
+        command.style.background = 'linear-gradient(135deg, #4CAF50, #45a049)';
+        command.style.transform = 'scale(1.05)';
         
         setTimeout(() => {
           command.textContent = originalText;
-          command.style.background = '';
+          command.style.background = originalBg;
+          command.style.transform = '';
         }, 1000);
         
       } catch (err) {
@@ -199,13 +357,99 @@ function initializeCommandCopy() {
     
     // Add cursor pointer
     command.style.cursor = 'pointer';
+    command.setAttribute('title', 'Click to copy');
   });
 }
 
-// Mobile Menu (if needed in future)
+// Typewriter Effect for Hero Title
+function initializeTypewriterEffect() {
+  const titleMain = document.querySelector('.title-main');
+  if (!titleMain) return;
+  
+  const text = titleMain.textContent;
+  titleMain.textContent = '';
+  titleMain.style.borderRight = '3px solid var(--primary-color)';
+  
+  let i = 0;
+  function typeWriter() {
+    if (i < text.length) {
+      titleMain.textContent += text.charAt(i);
+      i++;
+      setTimeout(typeWriter, 100);
+    } else {
+      // Remove cursor after typing is complete
+      setTimeout(() => {
+        titleMain.style.borderRight = 'none';
+      }, 1000);
+    }
+  }
+  
+  // Start typing after a delay
+  setTimeout(typeWriter, 500);
+}
+
+// Dynamic Stats Counter
+function initializeStatsCounter() {
+  const stats = document.querySelectorAll('.stat-number');
+  
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const target = entry.target;
+        const finalValue = target.textContent;
+        const isNumber = !isNaN(finalValue.replace(/[^0-9]/g, ''));
+        
+        if (isNumber) {
+          const numericValue = parseInt(finalValue.replace(/[^0-9]/g, ''));
+          const suffix = finalValue.replace(/[0-9]/g, '');
+          
+          let current = 0;
+          const increment = numericValue / 50;
+          
+          const counter = setInterval(() => {
+            current += increment;
+            if (current >= numericValue) {
+              target.textContent = finalValue;
+              clearInterval(counter);
+            } else {
+              target.textContent = Math.floor(current) + suffix;
+            }
+          }, 50);
+        }
+        
+        observer.unobserve(target);
+      }
+    });
+  });
+  
+  stats.forEach(stat => observer.observe(stat));
+}
+
+// Enhanced Mobile Menu
 function initializeMobileMenu() {
-  // Mobile menu functionality can be added here if needed
-  // For now, the responsive design handles mobile navigation
+  if (window.innerWidth > 768) return;
+  
+  const navLinks = document.querySelector('.nav-links');
+  const menuToggle = document.createElement('button');
+  menuToggle.className = 'mobile-menu-toggle';
+  menuToggle.innerHTML = '☰';
+  menuToggle.setAttribute('aria-label', 'Toggle menu');
+  
+  const navContainer = document.querySelector('.nav-container');
+  navContainer.appendChild(menuToggle);
+  
+  menuToggle.addEventListener('click', () => {
+    navLinks.classList.toggle('mobile-open');
+    menuToggle.innerHTML = navLinks.classList.contains('mobile-open') ? '✕' : '☰';
+  });
+  
+  // Close menu when clicking on a link
+  navLinks.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      navLinks.classList.remove('mobile-open');
+      menuToggle.innerHTML = '☰';
+    });
+  });
 }
 
 // Keyboard Navigation
@@ -231,6 +475,16 @@ function initializeKeyboardNavigation() {
         e.preventDefault();
         tabButtons[newIndex].focus();
         tabButtons[newIndex].click();
+      }
+    }
+    
+    // Escape key to close mobile menu
+    if (e.key === 'Escape') {
+      const navLinks = document.querySelector('.nav-links');
+      const menuToggle = document.querySelector('.mobile-menu-toggle');
+      if (navLinks && navLinks.classList.contains('mobile-open')) {
+        navLinks.classList.remove('mobile-open');
+        if (menuToggle) menuToggle.innerHTML = '☰';
       }
     }
   });
@@ -278,6 +532,18 @@ function initializePerformanceMonitoring() {
     // getLCP(console.log);
     // getTTFB(console.log);
   }
+  
+  // Log performance metrics
+  window.addEventListener('load', () => {
+    setTimeout(() => {
+      const perfData = performance.getEntriesByType('navigation')[0];
+      console.log('🚀 Performance Metrics:', {
+        'DOM Content Loaded': Math.round(perfData.domContentLoadedEventEnd - perfData.domContentLoadedEventStart) + 'ms',
+        'Load Complete': Math.round(perfData.loadEventEnd - perfData.loadEventStart) + 'ms',
+        'Total Load Time': Math.round(perfData.loadEventEnd - perfData.fetchStart) + 'ms'
+      });
+    }, 0);
+  });
 }
 
 // Utility Functions
@@ -309,12 +575,63 @@ const utils = {
   // Format numbers with commas
   formatNumber: (num) => {
     return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+  },
+  
+  // Animate element
+  animateElement: (element, animation, duration = 1000) => {
+    element.style.animation = `${animation} ${duration}ms ease-out`;
+    setTimeout(() => {
+      element.style.animation = '';
+    }, duration);
+  },
+  
+  // Random number between min and max
+  random: (min, max) => {
+    return Math.random() * (max - min) + min;
   }
 };
+
+// Easter Egg - Konami Code
+function initializeEasterEgg() {
+  const konamiCode = [
+    'ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown',
+    'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight',
+    'KeyB', 'KeyA'
+  ];
+  let userInput = [];
+  
+  document.addEventListener('keydown', (e) => {
+    userInput.push(e.code);
+    userInput = userInput.slice(-konamiCode.length);
+    
+    if (userInput.join('') === konamiCode.join('')) {
+      // Easter egg activated!
+      document.body.style.animation = 'rainbow 2s infinite';
+      setTimeout(() => {
+        document.body.style.animation = '';
+      }, 10000);
+      
+      // Add rainbow animation
+      const style = document.createElement('style');
+      style.textContent = `
+        @keyframes rainbow {
+          0% { filter: hue-rotate(0deg); }
+          100% { filter: hue-rotate(360deg); }
+        }
+      `;
+      document.head.appendChild(style);
+      
+      console.log('🌈 Easter egg activated! Enjoy the rainbow!');
+    }
+  });
+}
 
 // Initialize everything when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
   console.log('🕌 Islamic Prayer Bot Website Loaded');
+  
+  // Initialize loading screen first
+  initializeLoadingScreen();
   
   // Initialize all functionality
   initializeTabs();
@@ -324,10 +641,18 @@ document.addEventListener('DOMContentLoaded', () => {
   initializeScrollAnimations();
   initializePrayerTimeAnimation();
   initializeCommandCopy();
+  initializeCustomCursor();
+  initializeParticles();
+  initializeScrollIndicator();
+  initializeBackToTop();
+  initializeTypewriterEffect();
+  initializeStatsCounter();
+  initializeMobileMenu();
   initializeKeyboardNavigation();
   initializeErrorHandling();
   initializeThemeDetection();
   initializePerformanceMonitoring();
+  initializeEasterEgg();
   
   // Add loading complete class
   document.body.classList.add('loaded');
