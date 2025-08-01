@@ -11,8 +11,8 @@ const sectionHeaders = document.querySelectorAll('.section-header');
 
 // Configuration
 const CONFIG = {
-  botId: 'YOUR_BOT_ID_HERE', // Replace with your actual bot ID
-  permissions: '182272', // Basic permissions: Send Messages, Read Message History, Use Slash Commands, Embed Links
+  botId: '1399336621987467335', // Replace with your actual bot ID
+  permissions: '549756004352', // Basic permissions: Send Messages, Read Message History, Use Slash Commands, Embed Links
   inviteUrl: 'https://discord.com/api/oauth2/authorize'
 };
 
